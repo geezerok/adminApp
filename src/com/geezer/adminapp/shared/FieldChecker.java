@@ -20,7 +20,7 @@ package com.geezer.adminapp.shared;
  * JavaScript (such as Widgets) cannot be run on the server.
  * </p>
  */
-public class FieldVerifier {
+public class FieldChecker {
 
 	/**
 	 * Verifies that the specified name is valid for our service.
