@@ -1,0 +1,2 @@
+serviceClass: com.geezer.adminapp.client.adminAppService
+path: 2B448EABE573DF7F668C8CC40EC94FB4.gwt.rpc
