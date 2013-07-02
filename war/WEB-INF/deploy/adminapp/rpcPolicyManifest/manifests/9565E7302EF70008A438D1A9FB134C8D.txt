@@ -1,2 +1,0 @@
-serviceClass: com.geezer.adminapp.client.GreetingService
-path: B6583A49AD27A55E995F394C8D46FDDC.gwt.rpc
