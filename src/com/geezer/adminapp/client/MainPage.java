@@ -89,6 +89,7 @@ public class MainPage extends ContentPanel {
 		add(mainPanel, mainPanelLD);
 		add(getLeftPanel(), leftPanelLD);
 		add(getFooter(), footerLD);
+		addOverviewTab();
 
 	}
 
@@ -188,6 +189,14 @@ public class MainPage extends ContentPanel {
 		tabItem.setText(text);
 		tabItem.setClosable(true);
 		tabItem.add(tab);
+		mainPanel.add(tabItem);
+		mainPanel.setSelection(tabItem);
+	}
+	
+	private void addOverviewTab() {
+		TabItem tabItem = new TabItem();
+		tabItem.setText("Overview");
+		tabItem.setClosable(false);
 		mainPanel.add(tabItem);
 		mainPanel.setSelection(tabItem);
 	}

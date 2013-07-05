@@ -6,6 +6,9 @@ package com.geezer.adminapp.client;
 import java.util.Date;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
+import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.DateField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
@@ -36,7 +39,7 @@ public class UserForm extends FormPanel {
 	private TextArea description;
 	private Radio maleRadio;
 	private Radio femaleRadio;
-	private SimpleComboBox userGroup;
+	private SimpleComboBox<String> userGroup;
 	private Button findButton;
 	private Button saveButton;
 	private Button updateButton;
@@ -46,6 +49,19 @@ public class UserForm extends FormPanel {
 	
 	public UserForm() {
 		createForm();
+	}
+	
+	private void clearForm() {
+		aliasName.setValue(null);
+		firstName.setValue(null);
+		lastName.setValue(null);
+		accessKey.setValue(null);
+		eMail.setValue(null);
+		localPhone.setValue(null);
+		mobile.setValue(null);
+		description.setValue(null);
+		maleRadio.setValue(true);
+		dateOfBirth.setValue(null);
 	}
 	
 	/**
@@ -78,14 +94,17 @@ public class UserForm extends FormPanel {
 	    
 	    accessKey = new TextField<String>();
 	    accessKey.setFieldLabel("Access key");
+	    accessKey.setEmptyText("Enter user key's code");
 	    add(accessKey, formData);
 	    
 	    eMail = new TextField<String>();
+	    eMail.setEmptyText("Enter user's email");
 	    eMail.setFieldLabel("Email");
 	    add(eMail, formData);
 	    
 	    dateOfBirth = new DateField();  
 	    dateOfBirth.setFieldLabel("Birthday");  
+	    dateOfBirth.setEmptyText("YYYY-MM-DD");
 	    dateOfBirth.setMaxValue(new Date());
 	    add(dateOfBirth, formData);  
 	    
@@ -97,6 +116,7 @@ public class UserForm extends FormPanel {
 	    maleRadio = new Radio();
 	    femaleRadio = new Radio();
 	    maleRadio.setBoxLabel("Male");
+	    maleRadio.setValue(true);
 	    femaleRadio.setBoxLabel("Female");
 	    RadioGroup genderRadioGroup = new RadioGroup();
 	    genderRadioGroup.setFieldLabel("Select gender");
@@ -111,16 +131,18 @@ public class UserForm extends FormPanel {
 	    
 	    localPhone = new TextField<String>();
 	    localPhone.setFieldLabel("Phone");
+	    localPhone.setEmptyText("Enter user's local phone number");
 	    add(localPhone, formData);
 	    
 	    mobile = new TextField<String>();
 	    mobile.setFieldLabel("Mobile");
+	    mobile.setEmptyText("Enter user's personal phone number");
 	    add(mobile, formData);
 	    
 	    description = new TextArea();
 	    description.setFieldLabel("Commentary");
-	    description.setEmptyText("Enter the commentary here. " +
-	    		"Maximum 140 symbols(Yeah, hello twitter)"); 
+	    description.setEmptyText("Enter the commentary here. " 
+	    		+ "Maximum 140 symbols(Yeah, hello twitter)"); 
 	    description.setPreventScrollbars(true);
 	    description.setMaxLength(140);
 	    add(description, formData);
@@ -130,11 +152,20 @@ public class UserForm extends FormPanel {
 	    updateButton = new Button("Update");
 	    deleteButton = new Button("Delete");
 	    clearButton = new Button("Clear");
+	    clearButton.addListener(Events.Select, new Listener<ButtonEvent>() {
+
+			@Override
+			public void handleEvent(final ButtonEvent be) {
+				clearForm();				
+			}			
+	    	
+		});
 	    
 	    addButton(findButton);
 	    addButton(saveButton);
 	    addButton(updateButton);
 	    addButton(deleteButton);
 	    addButton(clearButton);
+	    
 	}
 }
