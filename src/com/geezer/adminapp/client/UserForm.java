@@ -94,7 +94,7 @@ public class UserForm extends FormPanel {
 	    
 	    accessKey = new TextField<String>();
 	    accessKey.setFieldLabel("Access key");
-	    accessKey.setEmptyText("Enter user key's code");
+	    accessKey.setEmptyText("Enter key's code");
 	    add(accessKey, formData);
 	    
 	    eMail = new TextField<String>();
