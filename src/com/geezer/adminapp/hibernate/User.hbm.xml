@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2013 3:22:56 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.geezer.adminapp.hibernate.User" table="user" catalog="adminapp">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="department" class="com.geezer.adminapp.hibernate.Department" fetch="select">
+            <column name="departmentID" not-null="true" />
+        </many-to-one>
+        <property name="aliasname" type="string">
+            <column name="aliasname" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="45" not-null="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="45" not-null="true" />
+        </property>
+        <property name="accesskey" type="string">
+            <column name="accesskey" length="15" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="15" not-null="true" />
+        </property>
+        <property name="birthdaydate" type="date">
+            <column name="birthdaydate" length="10" not-null="true" />
+        </property>
+        <property name="joindate" type="date">
+            <column name="joindate" length="10" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="1" not-null="true" />
+        </property>
+        <property name="commentaryl" type="string">
+            <column name="commentaryl" length="145" />
+        </property>
+        <set name="logins" table="login" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="com.geezer.adminapp.hibernate.Login" />
+        </set>
+        <set name="computers" table="computer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="com.geezer.adminapp.hibernate.Computer" />
+        </set>
+    </class>
+</hibernate-mapping>

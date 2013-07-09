@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2013 3:22:56 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.geezer.adminapp.hibernate.Parttype" table="parttype" catalog="adminapp">
+        <id name="typeId" type="java.lang.Integer">
+            <column name="typeID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <set name="parts" table="part" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="parttypeID" not-null="true" />
+            </key>
+            <one-to-many class="com.geezer.adminapp.hibernate.Part" />
+        </set>
+    </class>
+</hibernate-mapping>
