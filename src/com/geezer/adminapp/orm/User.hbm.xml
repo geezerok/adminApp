@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 18, 2013 12:32:14 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="adminapp" name="com.geezer.adminapp.orm.User" table="user">
+  <id name="userId" type="java.lang.Integer">
+   <column name="userID"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="Department" fetch="select" name="department">
+   <column name="departmentID" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="aliasname" type="string">
+   <column length="45" name="aliasname" not-null="true" unique="true"/>
+  </property>
+  <property generated="never" lazy="false" name="lastname" type="string">
+   <column length="45" name="lastname" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="firstname" type="string">
+   <column length="45" name="firstname" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="accesskey" type="string">
+   <column length="15" name="accesskey" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="email" type="string">
+   <column length="45" name="email" not-null="true" unique="true"/>
+  </property>
+  <property generated="never" lazy="false" name="mobile" type="string">
+   <column length="15" name="mobile" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="phone" type="string">
+   <column length="15" name="phone" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="birthdaydate" type="date">
+   <column length="10" name="birthdaydate" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="joindate" type="date">
+   <column length="10" name="joindate" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="gender" type="string">
+   <column length="1" name="gender" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="commentaryl" type="string">
+   <column length="145" name="commentaryl"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="logins"
+   sort="unsorted" table="login">
+   <key>
+    <column name="userID"/>
+   </key>
+   <one-to-many class="Login"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="computers"
+   sort="unsorted" table="computer">
+   <key>
+    <column name="userID" not-null="true"/>
+   </key>
+   <one-to-many class="Computer"/>
+  </set>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 18, 2013 12:32:14 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Part" table="part" catalog="adminapp">
+        <id name="partId" type="java.lang.Integer">
+            <column name="partID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="parttype" class="Parttype" fetch="select">
+            <column name="parttypeID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="computer" class="Computer" fetch="select">
+            <column name="computerID" not-null="true" />
+        </many-to-one>
+        <property name="fullname" type="string">
+            <column name="fullname" length="45" not-null="true" />
+        </property>
+        <property name="manufacturer" type="string">
+            <column name="manufacturer" length="80" not-null="true" />
+        </property>
+        <property name="serialnumber" type="string">
+            <column name="serialnumber" length="45" not-null="true" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="5" />
+        </property>
+        <property name="productiondate" type="date">
+            <column name="productiondate" length="10" not-null="true" />
+        </property>
+        <property name="state" type="int">
+            <column name="state" not-null="true" />
+        </property>
+        <property name="commentary" type="string">
+            <column name="commentary" length="145" />
+        </property>
+        <one-to-one name="stock" class="Stock"></one-to-one>
+    </class>
+</hibernate-mapping>
