@@ -128,9 +128,21 @@ public class MainPage extends ContentPanel {
 
 					}
 				});
+		
+		Button departmentBtn = new Button("Department",
+				new SelectionListener<ButtonEvent>() {
+
+					@Override
+					public void componentSelected(ButtonEvent ce) {
+						DepartmentForm departmentForm = new DepartmentForm();
+						addTab("New department", departmentForm);
+
+					}
+				});
 
 		userPanel.add(addNewUserBtn, buttonLayout);
 		userPanel.add(usersListBtn, buttonLayout);
+		userPanel.add(departmentBtn, buttonLayout);
 		result.add(userPanel);
 
 		ContentPanel hardwarePanel = new ContentPanel(new RowLayout());
