@@ -108,41 +108,43 @@ public class MainPage extends ContentPanel {
 		RowData buttonLayout = new RowData(1, -1, new Margins(5, 5, 5, 5));
 		ContentPanel userPanel = new ContentPanel(new RowLayout());
 		userPanel.setHeadingText("Users");
-		Button addNewUserBtn = new Button("Add new user",
-				new SelectionListener<ButtonEvent>() {
-
-					@Override
-					public void componentSelected(final ButtonEvent ce) {
-						UserForm userForm = new UserForm();
-						addTab("New User", userForm);
-
-					}
-				});
-		Button usersListBtn = new Button("User's List",
+		Button usersBtn = new Button("Users",
 				new SelectionListener<ButtonEvent>() {
 
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						UsersList usersList = new UsersList();
+						GridList usersList = new UsersList();
 						addTab("User's List", usersList);
 
 					}
 				});
 		
-		Button departmentBtn = new Button("Department",
+		Button departmentsBtn = new Button("Departments",
 				new SelectionListener<ButtonEvent>() {
 
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						DepartmentForm departmentForm = new DepartmentForm();
-						addTab("New department", departmentForm);
+						DepartmentsList departmentsList = new DepartmentsList();
+						addTab("Department's List", departmentsList);
+
+					}
+				});
+		
+		Button loginssBtn = new Button("Logins",
+				new SelectionListener<ButtonEvent>() {
+
+					@Override
+					public void componentSelected(ButtonEvent ce) {
+						GridList loginsList = new LoginsList();
+						addTab("login's List", loginsList);
 
 					}
 				});
 
-		userPanel.add(addNewUserBtn, buttonLayout);
-		userPanel.add(usersListBtn, buttonLayout);
-		userPanel.add(departmentBtn, buttonLayout);
+		
+		userPanel.add(usersBtn, buttonLayout);
+		userPanel.add(departmentsBtn, buttonLayout);
+		userPanel.add(loginssBtn, buttonLayout);
 		result.add(userPanel);
 
 		ContentPanel hardwarePanel = new ContentPanel(new RowLayout());
