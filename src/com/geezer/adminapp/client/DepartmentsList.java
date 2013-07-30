@@ -13,12 +13,14 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 
 public class DepartmentsList extends GridList<DepartmentModel> {
 	
+	final MainPage proxy;
 	
-	
-	public DepartmentsList() {
+	public DepartmentsList(MainPage mainPageRef) {
 		super("Department's list");
-		
-//		getPanel(getGridData(), setColumnConfigs());
+		proxy = mainPageRef;
+		super.setMyListener(new DepartmentGridListener(proxy),this);
+		getPanel(getGridData(), setColumnConfigs());
+
 	}
 
 	@Override

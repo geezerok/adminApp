@@ -19,9 +19,16 @@ import com.google.gwt.user.client.ui.AbstractImagePrototype;
 public class UsersList extends GridList<UserModel> {
 	
 	List<UserModel> users = new ArrayList<UserModel>();
+	final MainPage proxy;
 	
-	public UsersList() {
+	
+	public UsersList(MainPage mainPageRef) {
 		super("User's list");
+		proxy = mainPageRef;
+		
+		setMyListener(new UserGridListener(proxy, this));
+		getPanel(getGridData(), setColumnConfigs());
+		
 		
 //		getPanel(getGridData(), setColumnConfigs());
 	}

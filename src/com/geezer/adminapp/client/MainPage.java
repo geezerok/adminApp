@@ -113,7 +113,7 @@ public class MainPage extends ContentPanel {
 
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						GridList usersList = new UsersList();
+						GridList usersList = new UsersList(MainPage.this);
 						addTab("User's List", usersList);
 
 					}
@@ -124,7 +124,7 @@ public class MainPage extends ContentPanel {
 
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						DepartmentsList departmentsList = new DepartmentsList();
+						DepartmentsList departmentsList = new DepartmentsList(MainPage.this);
 						addTab("Department's List", departmentsList);
 
 					}
@@ -135,7 +135,7 @@ public class MainPage extends ContentPanel {
 
 					@Override
 					public void componentSelected(ButtonEvent ce) {
-						GridList loginsList = new LoginsList();
+						GridList loginsList = new LoginsList(MainPage.this);
 						addTab("login's List", loginsList);
 
 					}
@@ -198,7 +198,7 @@ public class MainPage extends ContentPanel {
 		return result;
 	}
 
-	private void addTab(String text, ContentPanel tab) {
+	public void addTab(String text, ContentPanel tab) {
 		TabItem tabItem = new TabItem();
 		tabItem.setText(text);
 		tabItem.setClosable(true);

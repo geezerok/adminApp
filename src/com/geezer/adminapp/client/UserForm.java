@@ -19,6 +19,7 @@ import com.extjs.gxt.ui.client.widget.form.TextArea;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.form.TimeField;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
+import com.geezer.adminapp.shared.UserModel;
 
 /**
  * @author geezer
@@ -51,6 +52,25 @@ public class UserForm extends FormPanel {
 		createForm();
 	}
 	
+	public UserForm(UserModel user) {
+		this();
+		fillForm(user);
+	}
+
+	private void fillForm(UserModel user) {
+		aliasName.setValue((String) user.get("aliasname"));
+		firstName.setValue((String) user.get("firstname"));
+		lastName.setValue((String) user.get("lastname"));
+		accessKey.setValue((String) user.get("accesskey"));
+		eMail.setValue((String) user.get("email"));
+		localPhone.setValue((String) user.get("phone"));
+		mobile.setValue((String) user.get("mobile"));
+		description.setValue((String) user.get("desc"));
+		maleRadio.setValue(true);
+		dateOfBirth.setValue((Date) user.get("birthdate"));
+		
+	}
+
 	private void clearForm() {
 		aliasName.setValue(null);
 		firstName.setValue(null);

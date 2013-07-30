@@ -10,9 +10,13 @@ import com.geezer.adminapp.shared.LoginsModel;
 
 public class LoginsList extends GridList {
 	
-	public LoginsList() {
+	MainPage proxy;
+	
+	public LoginsList(MainPage mainPageRef) {
 		super("Login's list");
-		
+		proxy = mainPageRef;
+//		super.setMyListener(new UserGridListener(proxy));
+		getPanel(getGridData(), setColumnConfigs());
 		
 	}
 
